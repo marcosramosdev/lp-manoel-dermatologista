@@ -1,0 +1,45 @@
+---
+const publicos = [
+  'Possuem uma pinta ou mancha que mudou recentemente',
+  'Perceberam uma ferida que não cicatriza',
+  'Já retiraram lesões de pele anteriormente',
+  'Têm histórico de exposição solar intensa',
+  'Possuem pele clara ou grande quantidade de pintas',
+  'Foram orientadas por outro médico a procurar um dermatologista',
+  'Desejam acompanhar a saúde da pele de forma preventiva',
+];
+---
+
+<section class="py-20 md:py-32 bg-white border-t border-rule">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="mb-12 md:mb-20" data-aos="fade-up">
+      <p class="eyebrow mb-3">Indicação</p>
+      <h2 class="text-3xl md:text-4xl font-700 text-ink leading-tight max-w-xl">
+        Para quem essa avaliação é indicada?
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-0 border-l border-t border-rule">
+      {publicos.map((item, i) => (
+        <div
+          class="border-r border-b border-rule p-7 md:p-8 hover:bg-paper transition-colors"
+          data-aos="fade-up"
+          data-aos-delay={String((i % 2) * 100)}
+        >
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 mt-1 text-xs font-600 text-brand tabular-nums w-5">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="text-ink text-sm leading-relaxed">{item}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-steel text-sm mt-8 font-300 leading-relaxed max-w-2xl">
+      Mesmo quando a lesão parece simples, a avaliação médica continua sendo a forma mais segura de entender o caso.
+    </p>
+
+  </div>
+</section>

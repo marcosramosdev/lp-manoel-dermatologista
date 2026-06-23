@@ -1,0 +1,162 @@
+---
+import '../styles/global.css';
+import 'aos/dist/aos.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Dr. Manoel Soares | Dermatologista — Avaliação de Lesões de Pele',
+  description = 'Dermatologista com quase 20 anos de experiência. Avaliação clínica de pintas, manchas e lesões suspeitas. Cirurgia dermatológica e biópsia com foco em diagnóstico preciso. Agende sua consulta.',
+  image = '/og-image.jpg',
+} = Astro.props;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : Astro.url.href;
+
+const siteURL = Astro.site?.href ?? 'https://drmanoel.com.br';
+const absoluteImage = new URL(image, siteURL).href;
+
+const schemaPhysician = {
+  '@context': 'https://schema.org',
+  '@type': ['Physician', 'LocalBusiness'],
+  name: 'Dr. Manoel Soares',
+  description:
+    'Dermatologista com quase 20 anos de experiência em cirurgia dermatológica, avaliação de lesões suspeitas, biópsia de pele e tratamento de câncer de pele.',
+  medicalSpecialty: 'Dermatology',
+  knowsAbout: [
+    'Dermatologia',
+    'Cirurgia Dermatológica',
+    'Câncer de Pele',
+    'Melanoma',
+    'Biópsia de Pele',
+    'Lesões Cutâneas',
+    'Carcinoma Basocelular',
+    'Dermatoscopia',
+    'Exérese de Tumores de Pele',
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'license',
+      name: 'CRM-XX 00000',
+      recognizedBy: { '@type': 'Organization', name: 'Conselho Federal de Medicina' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'certification',
+      name: 'RQE 00000 — Dermatologia',
+      recognizedBy: { '@type': 'Organization', name: 'Conselho Federal de Medicina' },
+    },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '[Endereço]',
+    addressLocality: '[Cidade]',
+    addressRegion: '[Estado]',
+    postalCode: '[CEP]',
+    addressCountry: 'BR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 0,
+    longitude: 0,
+  },
+  telephone: '+55-00-00000-0000',
+  url: siteURL,
+  image: absoluteImage,
+  priceRange: '$$',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
+  sameAs: [],
+};
+
+const schemaWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Dr. Manoel Soares | Centro Dermatológico',
+  url: siteURL,
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#2b7aa8" />
+
+    <!-- SEO primário -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Dr. Manoel Soares" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Dr. Manoel Soares | Centro Dermatológico" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo-icon.png" />
+    <link rel="apple-touch-icon" href="/logo-icon.png" />
+
+    <!-- Preload: hero image (LCP) -->
+    <link
+      rel="preload"
+      as="image"
+      href="/src/assets/images/hero.jpeg"
+      fetchpriority="high"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org: Médico + LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaPhysician)} />
+
+    <!-- Schema.org: WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaWebSite)} />
+  </head>
+  <body class="antialiased">
+    <slot />
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 650,
+        easing: 'ease-out-cubic',
+        offset: 60,
+        once: true,
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+import { Stethoscope, Microscope, Scissors, Shield, ClipboardList, ArrowUpRight } from 'lucide-react';
+
+const servicos = [
+  { Icon: Stethoscope, num: '01', titulo: 'Avaliação de pintas, manchas e lesões suspeitas', descricao: 'Análise clínica detalhada com critério médico especializado.' },
+  { Icon: Microscope,  num: '02', titulo: 'Biópsia de pele', descricao: 'Coleta de amostra para análise laboratorial quando necessário.' },
+  { Icon: Scissors,    num: '03', titulo: 'Retirada de lesões cutâneas', descricao: 'Remoção de lesões benignas ou suspeitas com técnica adequada.' },
+  { Icon: Shield,      num: '04', titulo: 'Exérese de tumores de pele', descricao: 'Procedimento cirúrgico com margens adequadas a cada caso.' },
+  { Icon: ClipboardList, num: '05', titulo: 'Acompanhamento de pacientes com histórico', descricao: 'Monitoramento periódico para quem já teve lesões ou câncer de pele.' },
+  { Icon: ArrowUpRight, num: '06', titulo: 'Encaminhamento especializado', descricao: 'Direcionamento para estruturas especializadas quando necessário.' },
+];
+---
+
+<section class="py-20 md:py-32 bg-paper border-t border-rule">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-20" data-aos="fade-up">
+      <div>
+        <p class="eyebrow mb-3">Procedimentos</p>
+        <h2 class="text-3xl md:text-4xl font-700 text-ink leading-tight max-w-xl">
+          Cirurgia dermatológica com foco em lesões de pele
+        </h2>
+      </div>
+      <p class="text-steel font-300 text-sm max-w-xs leading-relaxed md:text-right">
+        Procedimentos realizados com critério médico, planejamento e foco no diagnóstico adequado.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-rule">
+      {servicos.map(({ Icon, num, titulo, descricao }, i) => (
+        <div
+          class="border-r border-b border-rule p-8 bg-white hover:bg-brand-light transition-colors group"
+          data-aos="fade-up"
+          data-aos-delay={String(i * 80)}
+        >
+          <div class="flex items-start justify-between mb-5">
+            <Icon size={22} className="text-brand opacity-70 group-hover:opacity-100 transition-opacity" />
+            <span class="text-xs font-600 text-brand/40 tracking-widest tabular-nums">{num}</span>
+          </div>
+          <h3 class="text-ink font-600 text-[0.9375rem] mb-3 leading-snug group-hover:text-brand transition-colors">{titulo}</h3>
+          <p class="text-steel text-sm leading-relaxed font-300">{descricao}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

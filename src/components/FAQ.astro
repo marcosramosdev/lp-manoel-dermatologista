@@ -1,0 +1,56 @@
+---
+import { ChevronDown } from 'lucide-react';
+
+const perguntas = [
+  { pergunta: 'Toda lesão suspeita precisa ser retirada?', resposta: 'Não. Algumas lesões podem apenas ser acompanhadas. Outras exigem investigação ou remoção. A decisão depende da avaliação médica.' },
+  { pergunta: 'A consulta já confirma se é câncer de pele?', resposta: 'A consulta permite identificar sinais clínicos e orientar os próximos passos. Em alguns casos, a confirmação depende de biópsia e análise laboratorial.' },
+  { pergunta: 'O procedimento é realizado no consultório?', resposta: 'Alguns procedimentos dermatológicos podem ser realizados em ambiente ambulatorial. Casos maiores ou mais complexos podem exigir outra estrutura.' },
+  { pergunta: 'Tenho medo de fazer cirurgia. Posso ir apenas para avaliar?', resposta: 'Sim. O objetivo da consulta é justamente entender a situação antes de qualquer decisão.' },
+  { pergunta: 'Já retirei uma lesão anteriormente. Preciso continuar acompanhando?', resposta: 'Em muitos casos, sim. A necessidade e a frequência do acompanhamento dependem do histórico do paciente e da orientação médica.' },
+  { pergunta: 'Posso enviar uma foto pelo WhatsApp para saber o que é?', resposta: 'As fotos ajudam a equipe a compreender a queixa inicial, mas não substituem a consulta médica e o exame clínico presencial.' },
+];
+
+const schemaFAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: perguntas.map(({ pergunta, resposta }) => ({
+    '@type': 'Question',
+    name: pergunta,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: resposta,
+    },
+  })),
+};
+---
+
+<section id="faq" class="py-20 md:py-32 bg-paper border-t border-rule">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-16">
+
+      <div class="md:col-span-1 md:sticky md:top-24" data-aos="fade-right">
+        <p class="eyebrow mb-3">Dúvidas</p>
+        <h2 class="text-3xl font-700 text-ink leading-tight">Perguntas frequentes</h2>
+      </div>
+
+      <div class="md:col-span-2 border-t border-rule">
+        {perguntas.map(({ pergunta, resposta }, i) => (
+          <details
+            class="group border-b border-rule"
+            data-aos="fade-up"
+            data-aos-delay={String(i * 80)}
+          >
+            <summary class="flex items-center justify-between gap-6 py-6 cursor-pointer list-none font-600 text-ink hover:text-brand transition-colors select-none text-[0.9375rem]">
+              {pergunta}
+              <ChevronDown size={16} className="flex-shrink-0 text-brand transition-transform duration-200 group-open:rotate-180" />
+            </summary>
+            <div class="pb-7 text-steel text-sm leading-relaxed font-300">{resposta}</div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
