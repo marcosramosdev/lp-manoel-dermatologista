@@ -3,17 +3,19 @@ import { Image } from 'astro:assets';
 import heroImg from '../assets/images/hero.png';
 
 const WHATSAPP = '559985383515';
-const WA_MSG = encodeURIComponent('Olá! Vim pelo site e gostaria de agendar uma avaliação dermatológica com o Dr. Manoel Soares.');
+const WA_MSG = encodeURIComponent(
+  'Olá! Vim pelo site e gostaria de agendar uma avaliação dermatológica com o Dr. Manoel Soares.',
+);
 const WA_LINK = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_MSG}&utm_source=site&utm_medium=hero&utm_campaign=agendamento`;
 
 const ADDRESS = 'R. Oscár Galvão, 38 - Centro, Pedreiras - MA, 65725-000';
 const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 ---
 
-<section class="min-h-screen pt-16 bg-white flex overflow-hidden">
+<section class="min-h-screen pt-16 bg-white flex flex-col md:flex-row overflow-hidden">
   <!-- Texto — lado esquerdo alinhado ao max-w-6xl -->
-  <div class="flex-[3] flex items-center justify-end">
-    <div class="w-full max-w-[756px] px-6 md:pr-16 py-12 md:py-28">
+  <div class="flex-[3] flex items-start py-10 md:py-20 justify-end">
+    <div class="w-full max-w-[756px] px-6 md:pr-16">
       <p class="eyebrow mb-3" data-aos="fade-up">Centro Dermatológico</p>
 
       <h1
@@ -74,9 +76,19 @@ const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURICo
             <div class="w-0.5 h-10 bg-brand flex-shrink-0"></div>
             <div>
               <p class="font-600 text-ink text-sm group-hover:text-brand transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-3.5 w-3.5 mr-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="inline h-3.5 w-3.5 mr-1 -mt-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
                 Pedreiras - MA
               </p>
@@ -85,11 +97,32 @@ const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURICo
           </a>
         </div>
       </div>
+      <span
+        class="hidden md:inline-flex mt-10 text-steel/40 hover:text-brand transition-colors"
+        aria-label="Rolar para baixo"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="36"
+          height="36"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="animate-bounce"
+        >
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </span>
     </div>
   </div>
 
   <!-- Imagem — lado direito, bleed até a borda -->
-  <div class="hidden md:block flex-[2] min-h-full" data-aos="fade-left" data-aos-delay="200">
+  <div class="h-72 md:h-auto md:flex-[2] md:min-h-full" data-aos="fade-left" data-aos-delay="200">
     <div class="h-full w-full overflow-hidden bg-paper">
       <Image
         src={heroImg}
