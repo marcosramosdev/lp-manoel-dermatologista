@@ -1,16 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import heroImg from '../assets/images/hero.jpeg';
+import heroImg from '../assets/images/hero.png';
 
-const WHATSAPP = '5500000000000';
-const WA_MSG = encodeURIComponent('Olá! Gostaria de agendar uma avaliação dermatológica.');
-const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_MSG}`;
+const WHATSAPP = '559985383515';
+const WA_MSG = encodeURIComponent('Olá! Vim pelo site e gostaria de agendar uma avaliação dermatológica com o Dr. Manoel Soares.');
+const WA_LINK = `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${WA_MSG}&utm_source=site&utm_medium=hero&utm_campaign=agendamento`;
+
+const ADDRESS = 'R. Oscár Galvão, 38 - Centro, Pedreiras - MA, 65725-000';
+const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 ---
 
-<section class="min-h-screen pt-16 bg-white flex items-stretch">
-  <div class="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-5 gap-0 items-center py-2 lg:py-20 md:py-0">
-    <!-- Texto — 3 colunas -->
-    <div class="md:col-span-3 md:pr-16 py-12 md:py-28">
+<section class="min-h-screen pt-16 bg-white flex overflow-hidden">
+  <!-- Texto — lado esquerdo alinhado ao max-w-6xl -->
+  <div class="flex-[3] flex items-center justify-end">
+    <div class="w-full max-w-[756px] px-6 md:pr-16 py-12 md:py-28">
       <p class="eyebrow mb-3" data-aos="fade-up">Centro Dermatológico</p>
 
       <h1
@@ -54,23 +57,49 @@ const WA_LINK = `https://wa.me/${WHATSAPP}?text=${WA_MSG}`;
             </div>
           ))
         }
+        <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full" data-aos="fade-up">
+          <div class="flex items-center gap-4 p-5 border border-rule bg-white flex-1">
+            <div class="w-0.5 h-10 bg-brand flex-shrink-0"></div>
+            <div>
+              <p class="font-600 text-ink text-sm">CRM MA 6497 · RQE 3265</p>
+              <p class="text-xs text-steel mt-0.5">Registro profissional ativo</p>
+            </div>
+          </div>
+          <a
+            href={MAPS_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 p-5 border border-rule bg-white flex-1 hover:border-brand transition-colors group"
+          >
+            <div class="w-0.5 h-10 bg-brand flex-shrink-0"></div>
+            <div>
+              <p class="font-600 text-ink text-sm group-hover:text-brand transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="inline h-3.5 w-3.5 mr-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Pedreiras - MA
+              </p>
+              <p class="text-xs text-steel mt-0.5">R. Oscár Galvão, 38 · Centro</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Imagem — 2 colunas, flush à direita -->
-    <div class="md:col-span-2 h-full min-h-[420px] md:min-h-0" data-aos="fade-left" data-aos-delay="200">
-      <div class="h-full w-full overflow-hidden bg-paper">
-        <Image
-          src={heroImg}
-          alt="Dr. Manoel Soares realizando procedimento dermatológico"
-          width={560}
-          height={720}
-          class="w-full h-full object-cover object-center"
-          style="min-height: 420px;"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </div>
+  <!-- Imagem — lado direito, bleed até a borda -->
+  <div class="hidden md:block flex-[2] min-h-full" data-aos="fade-left" data-aos-delay="200">
+    <div class="h-full w-full overflow-hidden bg-paper">
+      <Image
+        src={heroImg}
+        alt="Dr. Manoel Soares realizando procedimento dermatológico"
+        width={560}
+        height={720}
+        class="w-full h-full object-cover object-top"
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
   </div>
 </section>
