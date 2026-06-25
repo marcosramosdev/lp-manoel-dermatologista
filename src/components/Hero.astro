@@ -127,8 +127,10 @@ const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURICo
       <Image
         src={heroImg}
         alt="Dr. Manoel Soares realizando procedimento dermatológico"
-        width={560}
-        height={720}
+        widths={[390, 560, 840, 1120]}
+        sizes="(max-width: 768px) 100vw, 40vw"
+        format="webp"
+        quality={88}
         class="w-full h-full object-cover object-top"
         loading="eager"
         fetchpriority="high"
